@@ -1,27 +1,27 @@
-import React from "react";
+import React from 'react';
 
-const Form = ({ inputText, setInputText, todos, setTodos }) => {
-  //Here I can write Javascript code and function
-  const inputTextHandler = (e) => {
-    console.log(e.target.value);
-    setInputText(e.target.value);
-  };
-  const submitTodoHandler = (e) => {
-    e.preventDefault();
-    setTodos([
-      ...todos,
-      { text: inputText, completed: false, id: Math.random() * 1000 },
-    ]);
-    setInputText("");
-  };
+const Form = ({setInputText, todos, setTodos,inputText}) => { 
+    // intead of using (props) in parameter use this way -> ({setInputText}) we don't have to call props.setInputText
+    //Here I can write javascript code and function 
+    //Tip: name for function make it finish its name with handler
+    const inputTextHandler = (e) => {
+        console.log(e.target.value);
+        //props.setInputText(e.target.value);
+        setInputText(e.target.value);
+    };
+    //When submiited, Let's make a object data for input data
+    const submitTodoHandler = (e) => {
+        e.preventDefault();
+        console.log("you click submit");
+        //create object
+        setTodos([
+            ...todos,{text:inputText, completed: false} // ... =>this code means if there is an todos in array, just spread it. and after create new object consist of `text` and `completed`
+        ])
+
+    }
   return (
     <form>
-      <input
-        value={inputText}
-        onChange={inputTextHandler}
-        type="text"
-        className="todo-input"
-      />
+      <input onChange ={inputTextHandler} type="text" className="todo-input" />
       <button onClick={submitTodoHandler} className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>
