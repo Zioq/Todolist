@@ -15,13 +15,15 @@ const Form = ({setInputText, todos, setTodos,inputText}) => {
         console.log("you click submit");
         //create object
         setTodos([
-            ...todos,{text:inputText, completed: false} // ... =>this code means if there is an todos in array, just spread it. and after create new object consist of `text` and `completed`
-        ])
+            ...todos,{text:inputText, completed: false, id: Math.random() *1000} // ... =>this code means if there is an todos in array, just spread it. and after create new object consist of `text` and `completed`
+        ]);
+        setInputText(""); // set inputText to empty after submit (do not make stay the data in the state of InputText after submiited) 
 
     }
   return (
+      // To make clear in the inputText, make a value={inpuText}. Because when the submitted, we code inputText's state make "". So we can get that empty string right away and setting it in the input value
     <form>
-      <input onChange ={inputTextHandler} type="text" className="todo-input" />
+      <input value={inputText} onChange ={inputTextHandler} type="text" className="todo-input" />
       <button onClick={submitTodoHandler} className="todo-button" type="submit">
         <i className="fas fa-plus-square"></i>
       </button>

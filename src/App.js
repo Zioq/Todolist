@@ -20,7 +20,8 @@ function App() {
         <h2>{inputText}</h2> */}
       </header>
       <Form todos={todos} setTodos={setTodos} setInputText = {setInputText} inputText= {inputText}/>
-      <TodoList />
+      {/** Passing down the todos data */}
+      <TodoList setTodos={setTodos} todos={todos}/>
     </div>
   )
 }
